@@ -7,7 +7,9 @@
       <router-link to="/slideshow">轮播图</router-link>|
       <router-link to="/play">表单验证</router-link>|
       <router-link to="/list">弹窗</router-link>|
-      <router-link to="/descriptions">描述列表</router-link>
+      <router-link to="/descriptions">描述列表</router-link>|
+       <router-link to="/login">登录</router-link>|
+      
     </div>
     <router-view />
   </div>
