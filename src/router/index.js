@@ -60,6 +60,11 @@ const routes = [
     component: () => import("../views/login/snake.vue"),
   },
   {
+    path: "/nav",
+    name: "Nav",
+    component: () => import("../views/nav/nav.vue"),
+  },
+  {
     path: "*",
     name: "ahha",
     component: () => import("../views/slideshow.vue"),

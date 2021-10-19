@@ -31,8 +31,8 @@ export default {
     };
   },
   created() {
-    // 随机生成5个食物
-    this.foods = this.generateFoods(5);
+    // 随机生成3个食物
+    this.foods = this.generateFoods(3);
   },
   mounted() {
     this.active();
@@ -183,7 +183,7 @@ export default {
       height: 500px;
       position: relative;
       margin: 20px auto;
-      
+
     }
     .grid .ele {
       background-color: #000;

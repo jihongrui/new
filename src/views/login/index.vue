@@ -2,7 +2,7 @@
   <div class="tab">
       <h2>LOGIN</h2>
     <form action=""></form>
-    <el-form ref="form" :model="form" label-width="50px">
+    <el-form ref="form" :model="form" label-width="50px" :rules="rules">
       <el-form-item label="姓名" prop="name">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -22,8 +22,16 @@ export default {
         name: "",
         password: "",
       },
+      rules:{
+        name:{required:true,message:'请输入名字',trigger:'blur'},
+        password:{required:true,message:'请输入密码',trigger:'blur'}
+      }
     };
   },
+  //如果两个输入框未填则登录按钮不可点击
+  // computed:{
+  //   name:
+  // },
   methods:{
       login(){
            this.$router.push('/snake')
