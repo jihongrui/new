@@ -49,8 +49,6 @@ export default {
           { required: true, message: "请输入公司名称", trigger: "blur" },
         ],
       },
-
-
     };
   },
  
