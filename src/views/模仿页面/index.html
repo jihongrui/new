@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静态页面</title>
+    <style>
+        /* div {
+            border: 1px solid red;
+        } */
+
+        body {
+            background: url(./背景图.png);
+            background-size: 100%;
+
+        }
+
+        .nav {
+            display: flex;
+        }
+
+        .leftnav {
+            display: flex;
+            width: 600px;
+            justify-content: space-between;
+            margin-left: 20px;
+            height: 150px;
+
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+
+        .font1 {
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .font2 {
+            color: rgb(235, 232, 232);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .font2:hover {
+            color: white;
+        }
+
+        .overflow_menu {
+            width: 80px;
+            height: 120px;
+            background-color: white;
+            color: #000;
+            margin: 0px;
+            padding: 0px;
+            display: none;
+            border-radius: 4px;
+        }
+
+        .overflow_menu li {
+            margin: 6px 0px;
+        }
+
+        .rightnav {
+            display: flex;
+            width: 100px;
+            position: absolute;
+            right: 80px;
+            justify-content: space-between;
+        }
+
+        .rightnav li {
+            font-size: 14px;
+            color: rgb(235, 232, 232);
+            text-align: center;
+        }
+
+        .content {
+            width: 800px;
+            height: 150px;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .title {
+            width: 80px;
+            height: 40px;
+            background-color: rgb(210, 214, 219);
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+
+        }
+        .box {
+            position: absolute;
+            height: 50px;
+            display: flex;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .input {
+            width: 780px;
+            height: 50px;
+            border-radius: 5px;
+            outline-style: none;
+            border: 0px;
+            border-radius: 0px 5px 5px 5px;
+            font-size: 18px;
+            padding-left: 10px;
+            display: none;
+        }
+
+        .on {
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            background-color: white;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul class="leftnav">
+            <li class="font1">Microsoft Bing</li>
+            <li class="font2">图片</li>
+            <li class="font2">视频</li>
+            <li class="font2" id="scope">更多
+                <ul class="overflow_menu">
+                    <li>学术</li>
+                    <li>词典</li>
+                    <li>地图</li>
+                    <li>MSN</li>
+                    <li>Office</li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="rightnav">
+            <li class="font2">Sign in</li>
+            <li class="font2">111</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div>
+            <span class="title">国内版</span>
+            <span class="title">国际版</span>
+        </div>
+        <ul class="box">
+            <li>
+                <input type="text" class="input" style="display: block;" placeholder="请输入">
+            </li>
+            <li>
+                <input type="text" class="input">
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="./index.js"></script>
+
+</html>
