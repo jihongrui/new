@@ -57,18 +57,27 @@ const routes = [
   {
     path: "/snake",
     name: "Snake",
-    component: () => import("../views/login/snake.vue"),
+    component: () => import("../views/贪吃蛇案例/snake.vue"),
   },
   {
     path: "/nav",
     name: "Nav",
     component: () => import("../views/nav/nav.vue"),
   },
+
   {
-    path: "*",
-    name: "ahha",
-    component: () => import("../views/slideshow.vue"),
+    path: "/imitate-csdn",
+    name: "Imitate-csdn",
+    component: () => import("../views/模仿csdn页面/index.vue"),
   },
+  {
+    path: "/sales",
+    name: "sales",
+
+    component: () => import("../views/参与项目五"),
+  },
+ 
+
 ];
 
 const router = new VueRouter({

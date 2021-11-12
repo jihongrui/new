@@ -1,19 +1,18 @@
 <template>
   <div class="can">
     <h1 class="grade"></h1>
-      <div class="grid">
-      <div class="ele" v-for="(item, index) in snake" :key="`snake${index}`" :style="locationCompute(item.x, item.y)"></div>
+    <div class="grid">
+      <div class="snake" v-for="(item, index) in snake" :key="`snake${index}`" :style="locationCompute(item.x, item.y)"></div>
       <div class="food" v-for="(item, index) in foods" :key="`food${index}`" :style="locationCompute(item.x, item.y)"></div>
     </div>
-    <el-button type="primary">开始游戏</el-button>
-    <el-button @click="stopGame()" type="warning">暂停游戏</el-button> 
+    <el-button type="primary" @click="active()">开始游戏</el-button>
+    <el-button @click="stopGame()" type="warning">暂停游戏</el-button>
     <el-button @click="reStart()" type="danger">重新开始</el-button>
-
   </div>
 </template>
 <script>
 export default {
-  // Grid 50*50的格子
+  // Grid 50*50的格子 
   data() {
     return {
       foods: [],
@@ -35,8 +34,7 @@ export default {
     this.foods = this.generateFoods(3);
   },
   mounted() {
-    this.active();
-    // 绑定键盘点击事件
+
     window.addEventListener("keyup", (event) => {
       // event.key = ArrowUp 上
       switch (event.key) {
@@ -59,7 +57,8 @@ export default {
     });
   },
   methods: {
-  
+
+
     // 暂停游戏
     stopGame() {
       clearInterval(this.timer);
@@ -74,10 +73,11 @@ export default {
         { x: 3, y: 0 },
         { x: 4, y: 0 },
       ]; //(x, y) 组成蛇的每一块儿的位置
-      this.foods = this.generateFoods(5);
+      this.foods = this.generateFoods(3);
       this.direction = 3;
       this.active();
     },
+    //
     isEat() {
       let head = this.snake[this.snake.length - 1];
       let isEat = false;
@@ -176,31 +176,29 @@ export default {
   },
 };
 </script>
-<style  scoped>
-    .grid {
-      background-color: #ddd;
-      width: 500px;
-      height: 500px;
-      position: relative;
-      margin: 20px auto;
+<style scope>
+.grid {
+  background-color: #ddd;
+  width: 500px;
+  height: 500px;
+  position: relative;
+  margin: 20px auto;
+}
+.grid .snake {
+  background-color: #000;
+  position: absolute;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+}
 
-    }
-    .grid .ele {
-      background-color: #000;
-      position: absolute;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      width: 10px;
-      height: 10px;
-    }
-
-    .grid .food {
-      background-color: red;
-      position: absolute;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      width: 10px;
-      height: 10px;
-    }
-
+.grid .food {
+  background-color: red;
+  position: absolute;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+}
 </style>
