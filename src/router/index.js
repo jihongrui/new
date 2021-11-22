@@ -76,6 +76,19 @@ const routes = [
 
     component: () => import("../views/参与项目五"),
   },
+  {
+    path: "/hamster",
+    name: "hamster",
+
+    component: () => import("../views/打地鼠/index.vue"),
+  },
+  {
+    path: "/11",
+    name: "11",
+
+    component: () => import("../views/打地鼠/1.vue"),
+  },
+
  
 
 ];

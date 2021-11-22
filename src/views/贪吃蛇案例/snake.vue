@@ -1,5 +1,5 @@
 <template>
-  <div class="can">
+  <div class="canvas">
     <!-- 游戏界面 -->
     <div class="content" v-if="show">
       <div class="snake-grassland">
@@ -7,13 +7,13 @@
           class="snake"
           v-for="(item, index) in snake"
           :key="`snake${index}`"
-          :style="locationCompute(item.x, item.y)"
+          :style="location(item.x, item.y)"
         ></div>
         <div
           class="food"
           v-for="(item, index) in foods"
           :key="`food${index}`"
-          :style="locationCompute(item.x, item.y)"
+          :style="location(item.x, item.y)"
         ></div>
       </div>
       <div class="right">
@@ -82,10 +82,7 @@ export default {
       foods: [],
       direction: 3, //初始方向向右
       timer: null,
-      snake: [
-        { x: 1, y: 0 },
-        { x: 2, y: 0 },
-      ], //(x, y) 组成蛇的每一块儿的位置
+      snake: [], //(x, y) 组成蛇的每一块儿的位置
       xStep: 1,
       yStep: 1,
     };
@@ -140,11 +137,7 @@ export default {
     // 重新开始
     reStart() {
       this.showFail = false;
-
-      this.snake = [
-        { x: 1, y: 0 },
-        { x: 2, y: 0 },
-      ]; //(x, y) 组成蛇的每一块儿的位置
+      this.snake = this.makeSnake(20);
       this.foods = this.generateFoods(3);
       this.direction = 3;
       this.score = 0;
@@ -211,11 +204,7 @@ export default {
         this.show = !this.show;
         return alert("用户名不可小于三位字符");
       } else {
-        this.snake = [
-          // { x: 0, y: 0 },
-          { x: 1, y: 0 },
-          { x: 2, y: 0 },
-        ]; //(x, y) 组成蛇的每一块儿的位置
+        this.snake = this.makeSnake(20);
         this.foods = this.generateFoods(3);
         this.direction = 3;
         this.timer = setInterval(() => {
@@ -224,20 +213,29 @@ export default {
       }
     },
 
+    makeSnake(num = 5) {
+      let snake = [];
+      for (let i = 0; i < num; i++) {
+        let guanjie = { x: i, y: 0 };
+        snake.push(guanjie);
+      }
+      return snake;
+    },
+
     // 随机生成食物
     generateFoods(total) {
       const foods = [];
       for (let i = 0; i < total; i++) {
         //食物的随机x轴坐标，也就是第几行
         const foodX = Math.floor(Math.random() * 50);
-        //食物的随机x轴坐标，也就是第几列
+        //食物的随机y轴坐标，也就是第几列
         const foodY = Math.floor(Math.random() * 50);
         foods.push({ x: foodX, y: foodY });
       }
       return foods;
     },
     // 获取位置
-    locationCompute(x, y) {
+    location(x, y) {
       return {
         left: x * 10 + "px",
         top: y * 10 + "px",
@@ -246,19 +244,32 @@ export default {
     //蛇开始动 判断是否超出界限 head表示贪吃蛇的头部，当头部超过地图的范围时
     //先获取下一步数据，坐标值，判断坐标值是否非法，如果不非法就可以动了
     move(xStep, yStep) {
-      // 小蛇移动就是除头部以外的部分向前移动一个身位,即前一个状态的最后一个身位丢弃
+      //定义蛇的头部位置
       let head = this.snake[this.snake.length - 1];
-
-      if (head.x >= 0 && head.y >= 0 && head.x < 49 && head.y < 49) {
-        this.snake.push({ x: head.x + xStep, y: head.y + yStep });
-        this.snake.shift();
-      } else {
+      
+      //需要获取下一步坐标
+      let newhead = { x: head.x + xStep, y: head.y + yStep };
+      if (newhead.x < 0 || newhead.y < 0 || newhead.x > 49 || newhead.y > 49) {
         clearInterval(this.timer);
         this.timer = null;
         this.endGame();
+        return;
+      } else {
+        console.log("newhead", newhead);
+        //判断蛇有没有碰到自己，碰到自己游戏结束
+        for (let i = 0; i < this.snake.length - 1; i++) {
+          if (newhead.x == this.snake[i].x && newhead.y == this.snake[i].y) {
+            clearInterval(this.timer);
+            this.timer = null;
+            this.endGame();
+            return;
+          }
+        }
       }
+      this.snake.push(newhead);
+      //移出蛇的第一项
+      this.snake.shift();
     },
-    //判断坐标值是否非法
 
     //结束游戏
     endGame() {
@@ -297,19 +308,19 @@ export default {
   padding: 0;
   margin: 0;
 }
-.can {
+.canvas {
   height: 500px;
 }
 .content {
   width: 750px;
   height: 500px;
-  overflow: hidden;
   margin-left: 520px;
   position: relative;
   border: 1px solid gainsboro;
+  display: flex;
 }
 .snake-grassland {
-  position: absolute;
+  position: relative;
   background-color: #52af4a;
   width: 500px;
   height: 500px;
@@ -352,7 +363,7 @@ export default {
   background: linear-gradient(#d5ddbb, transparent) no-repeat,
     url("~@/img/贪吃蛇.jpg") no-repeat;
   background-size: auto 500px, 500px 640px;
-  left: 520px;
+  margin: 0px 520px;
 }
 .ruleForm {
   padding: 180px 60px 20px;
