@@ -87,8 +87,17 @@ const routes = [
     name: "11",
 
     component: () => import("../views/打地鼠/1.vue"),
+  },{
+    path:"/cc",
+    name:"cc",
+    component:()=>import("../views/TODO/todolist.vue")
   },
-
+  {
+    path:"/newForm",
+    name:"newForm",
+    component:()=>import("../views/参与项目八")
+  },
+ 
  
 
 ];

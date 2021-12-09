@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打地鼠</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            border: 1px solid red;
+        }
+        .game-interface {
+            width: 800px;
+            margin: 20px auto;
+            display: flex;
+            position: relative;
+        }
+        .game-background {
+            width: 600px;
+            height: 500px;
+            background: url('./地鼠背景图.jpg') no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .pan {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            /* //让鼠标在锅中心， */
+            margin-left: -30px;
+            margin-top: -30px;
+            /* //可以在锅图片上加border，看看没有设置margin时的效果 */
+            top: 0;
+            left: 0;
+            cursor: none;
+            z-index: 100;
+        }
+        .canvas {
+            width: 420px;
+            height: 250px;
+            margin: 187px auto 0px;
+            position: relative;
+        }
+        .hole {
+            width: 107px;
+            height: 125px;
+            margin: 5px 15px;
+            float: left;
+            border: 1px solid red;
+
+        }
+        .hastmer{
+            position: absolute;
+            width: 107px;
+            height: 125px;
+        }
+        .game-introduction {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="game-interface">
+        <div class="game-background">
+            <div class="canvas">
+                <div class="hole">
+                    <div class="hastmer"></div>
+                </div>
+                <div class="hole">
+                    <div class="hastmer"></div>
+                </div>
+                <div class="hole">
+                    <div class="hastmer"></div>
+                </div>
+                <div class="hole">
+                    <div class="hastmer"></div>
+                </div>
+                <div class="hole">
+                    <div class="hastmer"></div>
+                </div>
+                <div class="hole">
+                    <div class="hastmer"></div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="game-introduction">
+            <p>分数</p>
+            <el-button>开始</el-button>
+            <el-button>暂停</el-button>
+            <el-button>继续</el-button>
+        </div>
+    </div>
+    <script>
+
+
+    </script>
+</body>
+
+</html>
